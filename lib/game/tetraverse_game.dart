@@ -94,7 +94,7 @@ Future<void> onLoad() async {
 
   input = InputController(
     onMove: board.moveCurrentBlock,
-    getCurrentBlockRect: board.getCurrentBlockRects,
+    // Removed the undefined parameter
   )
     ..size = size
     ..position = Vector2.zero();
@@ -312,21 +312,26 @@ class _StartScreenState extends State<StartScreen>
                   width: _buttonWidth(context),
                 ),
                 const SizedBox(height: 20),
-                _glassButton(
-                  label: 'How to Play',
-                  onPressed: () => _showInfoDialog(
-                    context,
-                    'How to Play',
-                    '''
-Use arrow keys or swipe to move the block.
+               _glassButton(
+  label: 'How to Play',
+  onPressed: () => _showInfoDialog(
+    context,
+    'How to Play',
+    '''
+Use arrow keys or swipe to move the block left or right.
 
-Tap the screen to rotate the piece.
+Tap the left or right side of the screen to move the block.
+
+Tap the middle of the screen to rotate the piece.
+
+Swipe down quickly to drop the block faster.
 
 Complete a full line to clear it.
 
 Each time you clear a line, gravity reverses!
-                    ''',
-                  ),
+    ''',
+  ),
+
                   width: _buttonWidth(context),
                 ),
                 const SizedBox(height: 20),
