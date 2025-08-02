@@ -9,15 +9,13 @@ class InputController extends PositionComponent
   Vector2? dragStart;
   bool hasMoved = false;
 
-  InputController({
-    required this.onMove,
-    required List<Rect> Function() getCurrentBlockRect,
-  });
+  InputController({required this.onMove});
 
   @override
   void onTapDown(TapDownEvent event) {
-    super.onTapDown(event); // <-- Viktigt!
-    final touchX = absoluteToLocal(event.canvasPosition).x;
+    super.onTapDown(event);
+
+    final touchX = absoluteToLocal(event.localPosition).x;
     final sectionWidth = size.x / 3;
 
     if (touchX < sectionWidth) {
@@ -31,43 +29,49 @@ class InputController extends PositionComponent
 
   @override
   void onDragStart(DragStartEvent event) {
-    super.onDragStart(event); // <-- Viktigt!
-    dragStart = absoluteToLocal(event.canvasPosition);
+    super.onDragStart(event);
+    dragStart = event.localPosition;
     hasMoved = false;
   }
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    super.onDragUpdate(event); // <-- Viktigt!
+    super.onDragUpdate(event);
     if (dragStart == null || hasMoved) return;
 
-    final delta = event.localDelta + (dragStart ?? Vector2.zero());
+    final delta = event.localDelta;
 
-    if (delta.x.abs() > 20 && delta.y.abs() < 20) {
-      hasMoved = true;
-      onMove(delta.x > 0 ? 'right' : 'left');
-    }
-
-    if (delta.y > 30 && delta.x.abs() < 20) {
+    // Snabb drop: drop om draget går neråt > 15 pixlar
+    if (delta.y > 15) {
       hasMoved = true;
       onMove('drop');
+      return;
+    }
+
+    // Flytta vänster/höger om draget går horisontellt > 15 pixlar
+    if (delta.x.abs() > 15) {
+      hasMoved = true;
+      onMove(delta.x > 0 ? 'right' : 'left');
     }
   }
 
   @override
   void onDragEnd(DragEndEvent event) {
-    super.onDragEnd(event); // <-- Viktigt!
+    super.onDragEnd(event);
     dragStart = null;
     hasMoved = false;
   }
 
   @override
   void onDragCancel(DragCancelEvent event) {
-    super.onDragCancel(event); // <-- Viktigt!
+    super.onDragCancel(event);
     dragStart = null;
     hasMoved = false;
   }
 }
+
+
+
 
 
 
