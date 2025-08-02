@@ -1,16 +1,88 @@
-# tetris
+# Tetraverse
 
-A new Flutter project.
+A modern twist on the classic Tetris game, built with **Flutter** and **Flame**. Tetraverse brings beautiful visuals, glowing effects, audio feedback, and polished UI to an arcade favorite.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🎮 Smooth touch and keyboard controls
+- 🔊 Sound effects when blocks land or lines clear
+- ✨ Blinking effect before line clears
+- 🌈 Gradient splash screen with intro sound
+- 📊 Score, level and next piece panel with glassmorphism
+- 📦 Built using Flame Engine and Flame Audio
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🖥️ Screenshots
+
+> Add screenshots here if available  
+> (e.g. `assets/screenshots/screenshot1.png`)
+
+---
+
+## 📁 Folder Structure
+
+```
+/game
+│
+├── CodeCraftmanSplash.dart # Animated splash screen with sound
+├── game_board.dart # Tetris board rendering and logic
+├── game_screen.dart # Main game screen
+├── gravity.dart # Falling logic and tick control
+├── input_controller.dart # Keyboard/touch input
+├── level_text.dart # Displays the current level
+├── next_block_display.dart # Shows upcoming tetromino
+├── score_text.dart # Displays current score
+├── SplashScreen.dart # Transitions to main game
+├── stats_panel.dart # UI panel with blur effect
+├── tetraverse_game.dart # Main Flame Game class
+├── tetromino.dart # Tetromino logic (rotation, shape, etc.)
+└── main.dart # Entry point
+```
+
+---
+
+## 🔧 Getting Started
+
+```bash
+flutter pub get
+flutter run
+```
+
+To regenerate app icons (after changing the icon image):
+
+```bash
+flutter pub run flutter_launcher_icons:main
+```
+
+---
+
+## 📦 Dependencies
+
+- [`flame`](https://pub.dev/packages/flame)
+- [`flame_audio`](https://pub.dev/packages/flame_audio)
+- [`audioplayers`](https://pub.dev/packages/audioplayers)
+- [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons)
+
+---
+
+## 📱 App Icon & Name
+
+- App name: `Tetraverse`
+- Add icon in `assets/icon/app_icon.png`
+- Configured via `flutter_launcher_icons` in `pubspec.yaml`
+
+---
+
+## 👨‍💻 Author
+
+Created with ❤️ by [CodeCraftsMan]
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
